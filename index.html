@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroBloom 🌸</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Floating particles background -->
+  <div class="bg-particles" id="bgParticles"></div>
+
+  <!-- ===== HOME SCREEN ===== -->
+  <div class="screen active" id="screen-home">
+    <div class="home-content">
+      <div class="logo-area">
+        <div class="app-title">NeuroBloom</div>
+        <div class="app-subtitle">Speech · Play · Grow 🌱</div>
+      </div>
+
+      <div class="neurobot-wrap">
+        <div class="neurobot-bubble" id="homeBubble">Hello! I'm NeuroBot! Ready to learn and play? 🎉</div>
+        <div class="neurobot" id="homeBot">
+          <div class="bot-body">
+            <div class="bot-face">
+              <div class="bot-eyes">
+                <div class="bot-eye"><div class="pupil"></div></div>
+                <div class="bot-eye"><div class="pupil"></div></div>
+              </div>
+              <div class="bot-mouth smile"></div>
+            </div>
+            <div class="bot-antenna"></div>
+            <div class="bot-ears">
+              <div class="bot-ear left"></div>
+              <div class="bot-ear right"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-grid">
+        <button class="menu-btn games-btn" onclick="navigate('games')">
+          <div class="btn-icon">🎮</div>
+          <div class="btn-label">Games</div>
+          <div class="btn-sub">Play & Learn</div>
+        </button>
+        <button class="menu-btn exercises-btn" onclick="navigate('exercises')">
+          <div class="btn-icon">🧠</div>
+          <div class="btn-label">Exercises</div>
+          <div class="btn-sub">Train Your Voice</div>
+        </button>
+        <button class="menu-btn mood-btn" onclick="navigate('mood')">
+          <div class="btn-icon">💜</div>
+          <div class="btn-label">Mood</div>
+          <div class="btn-sub">How Are You?</div>
+        </button>
+      </div>
+
+      <div class="stars-row">
+        <span class="star filled">⭐</span>
+        <span class="star filled">⭐</span>
+        <span class="star filled">⭐</span>
+        <span class="star">☆</span>
+        <span class="star">☆</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GAMES SCREEN ===== -->
+  <div class="screen" id="screen-games">
+    <div class="screen-header">
+      <button class="back-btn" onclick="navigate('home')">← Back</button>
+      <h2 class="screen-title">🎮 Games</h2>
+    </div>
+    <div class="neurobot-inline">
+      <div class="bot-mini">
+        <div class="bot-face small">
+          <div class="bot-eyes small">
+            <div class="bot-eye sm"><div class="pupil"></div></div>
+            <div class="bot-eye sm"><div class="pupil"></div></div>
+          </div>
+          <div class="bot-mouth smile"></div>
+        </div>
+      </div>
+      <div class="bot-speech-small">Pick a game and let's have fun! 🎈</div>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-card" onclick="showGameModal('balloon')">
+        <div class="game-card-bg balloon-bg"></div>
+        <div class="game-icon">🎈</div>
+        <div class="game-name">Balloon Game</div>
+        <div class="game-desc">Say a word, pop a balloon!</div>
+        <div class="game-level">⭐ Easy</div>
+        <button class="play-btn">Play Now</button>
+      </div>
+
+      <div class="game-card" onclick="showGameModal('train')">
+        <div class="game-card-bg train-bg"></div>
+        <div class="game-icon">🚂</div>
+        <div class="game-name">Train Game</div>
+        <div class="game-desc">Build words, ride the rails!</div>
+        <div class="game-level">⭐⭐ Medium</div>
+        <button class="play-btn">Play Now</button>
+      </div>
+
+      <div class="game-card" onclick="showGameModal('syllable')">
+        <div class="game-card-bg syllable-bg"></div>
+        <div class="game-icon">🧩</div>
+        <div class="game-name">Syllable Steps</div>
+        <div class="game-desc">Jump through syllables!</div>
+        <div class="game-level">⭐⭐⭐ Hard</div>
+        <button class="play-btn">Play Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXERCISES SCREEN ===== -->
+  <div class="screen" id="screen-exercises">
+    <div class="screen-header">
+      <button class="back-btn" onclick="navigate('home')">← Back</button>
+      <h2 class="screen-title">🧠 Exercises</h2>
+    </div>
+
+    <div class="neurobot-inline">
+      <div class="bot-mini">
+        <div class="bot-face small">
+          <div class="bot-eyes small">
+            <div class="bot-eye sm"><div class="pupil"></div></div>
+            <div class="bot-eye sm"><div class="pupil"></div></div>
+          </div>
+          <div class="bot-mouth smile"></div>
+        </div>
+      </div>
+      <div class="bot-speech-small" id="exerciseMessage">Great job! Practice makes perfect! 💪</div>
+    </div>
+
+    <!-- Tab switcher -->
+    <div class="tab-row">
+      <button class="tab-btn active" id="tab-speech" onclick="switchTab('speech')">🗣️ Speech</button>
+      <button class="tab-btn" id="tab-lip" onclick="switchTab('lip')">👄 Lip & Tongue</button>
+    </div>
+
+    <!-- Speech exercises panel -->
+    <div class="tab-panel active" id="panel-speech">
+      <div class="exercise-list">
+        <div class="exercise-card" onclick="startExercise(this, 'Repeat after me: Ba – Be – Bi – Bo – Bu')">
+          <div class="ex-icon">🔤</div>
+          <div class="ex-info">
+            <div class="ex-name">Vowel Flow</div>
+            <div class="ex-desc">Practice vowel sounds in sequence</div>
+          </div>
+          <div class="ex-arrow">▶</div>
+        </div>
+        <div class="exercise-card" onclick="startExercise(this, 'Say these words slowly: Sun – Moon – Star – Sky')">
+          <div class="ex-icon">☀️</div>
+          <div class="ex-info">
+            <div class="ex-name">Word Rhythm</div>
+            <div class="ex-desc">Say words at steady pace</div>
+          </div>
+          <div class="ex-arrow">▶</div>
+        </div>
+        <div class="exercise-card" onclick="startExercise(this, 'Breathe in... now say: Ahhhh for 5 seconds!')">
+          <div class="ex-icon">🌬️</div>
+          <div class="ex-info">
+            <div class="ex-name">Breath Control</div>
+            <div class="ex-desc">Long sustained sounds</div>
+          </div>
+          <div class="ex-arrow">▶</div>
+        </div>
+        <div class="exercise-card" onclick="startExercise(this, 'Say it louder, then softer: Hello! ... hello ...')">
+          <div class="ex-icon">📢</div>
+          <div class="ex-info">
+            <div class="ex-name">Volume Game</div>
+            <div class="ex-desc">Control your voice volume</div>
+          </div>
+          <div class="ex-arrow">▶</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lip & Tongue panel -->
+    <div class="tab-panel" id="panel-lip">
+      <div class="mouth-demo-area">
+        <div class="mouth-container">
+          <div class="mouth-animated" id="mouthAnim">
+            <div class="upper-lip"></div>
+            <div class="mouth-inside">
+              <div class="teeth-top"></div>
+              <div class="tongue" id="tongue"></div>
+              <div class="teeth-bottom"></div>
+            </div>
+            <div class="lower-lip"></div>
+          </div>
+          <div class="mouth-label" id="mouthLabel">Follow Me! 👇</div>
+        </div>
+
+        <div class="lip-controls">
+          <button class="lip-btn" onclick="runMouthAnim('open')">😮 Open Wide</button>
+          <button class="lip-btn" onclick="runMouthAnim('smile')">😄 Big Smile</button>
+          <button class="lip-btn" onclick="runMouthAnim('tongue')">👅 Tongue Out</button>
+          <button class="lip-btn" onclick="runMouthAnim('kiss')">😗 Round Lips</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MOOD SCREEN ===== -->
+  <div class="screen" id="screen-mood">
+    <div class="screen-header">
+      <button class="back-btn" onclick="navigate('home')">← Back</button>
+      <h2 class="screen-title">💜 Mood Check</h2>
+    </div>
+
+    <div class="mood-content">
+      <div class="mood-question">How are you feeling today?</div>
+
+      <div class="neurobot-mood">
+        <div class="bot-mini large">
+          <div class="bot-face medium">
+            <div class="bot-eyes">
+              <div class="bot-eye"><div class="pupil"></div></div>
+              <div class="bot-eye"><div class="pupil"></div></div>
+            </div>
+            <div class="bot-mouth smile" id="moodBotMouth"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mood-bot-msg" id="moodMessage">I'm here for you! Pick an emoji 💜</div>
+
+      <div class="emoji-grid">
+        <button class="emoji-btn" onclick="selectMood('happy')">
+          <span class="emoji-icon">😊</span>
+          <span class="emoji-label">Happy</span>
+        </button>
+        <button class="emoji-btn" onclick="selectMood('okay')">
+          <span class="emoji-icon">😐</span>
+          <span class="emoji-label">Okay</span>
+        </button>
+        <button class="emoji-btn" onclick="selectMood('sad')">
+          <span class="emoji-icon">😔</span>
+          <span class="emoji-label">Sad</span>
+        </button>
+        <button class="emoji-btn" onclick="selectMood('angry')">
+          <span class="emoji-icon">😡</span>
+          <span class="emoji-label">Upset</span>
+        </button>
+      </div>
+
+      <div class="mood-response-card" id="moodCard" style="display:none;">
+        <div class="mood-response-text" id="moodResponse"></div>
+        <div class="mood-stars" id="moodStars"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GAME MODAL ===== -->
+  <div class="modal-overlay" id="gameModal" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-icon" id="modalIcon"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-body" id="modalBody"></div>
+      <button class="modal-play-btn" onclick="closeModal()">🎮 Coming Soon!</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
